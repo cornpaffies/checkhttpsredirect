@@ -1,6 +1,4 @@
 #include <curl/curl.h>
-#include <curl/easy.h>
-#include <stdbool.h>
 #include <string.h>
 
 int main(int argc, char **argv) {
@@ -25,6 +23,10 @@ int main(int argc, char **argv) {
   eval = (redirect_url && strncmp(redirect_url, "https", 5) == 0) ? 0 : 1;
 
   curl_easy_cleanup(checker);
+
+  if (eval) {
+    printf("%s: No https redirect\n", argv[1]);
+  }
 
   return eval;
 }
